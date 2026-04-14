@@ -8,7 +8,6 @@ from .translate import translate
 def home(request):
     return render(request, "index.html")
 
-
 @csrf_exempt
 def translate_text(request):
     if request.method == "POST":
