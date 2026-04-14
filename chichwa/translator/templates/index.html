@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translatr</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+        }
+
+        textarea {
+            width: 400px;
+        }
+
+        select, button {
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Translatr</h2>
+
+<textarea id="text" rows="4"></textarea>
+
+<br>
+
+<select id="lang">
+    <option value="sw">Swahili</option>
+    <option value="en">English</option>
+</select>
+
+<br>
+
+<button onclick="translateText()">Translate</button>
+
+<div id="result"></div>
+
+<script>
+async function translateText() {
+    const text = document.getElementById("text").value;
+    const lang = document.getElementById("lang").value;
+
+    const response = await fetch("/api/v1/translate-text", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            text: text,
+            targetLanguage: lang
+        })
+    });
+
+    const data = await response.json();
+    document.getElementById("result").innerText = data.translatedText;
+}
+</script>
+
+</body>
+</html>
