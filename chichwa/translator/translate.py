@@ -1,4 +1,4 @@
-EN_TO_SW = {
+eng_swa = {
     "buy maize": "nunua mahindi",
     "hello": "habari",
     "good morning": "habari za asubuhi",
@@ -8,19 +8,21 @@ EN_TO_SW = {
     "how are you": "habari yako",
     "yes": "ndio",
     "no": "hapana",
-    "come here": "kuja hapa"
+    "come here": "kuja hapa",
+    "put stone": "weka mawe",
+    "it is bad": "ni mbaya",
 }
 
-SW_TO_EN = {v: k for k, v in EN_TO_SW.items()}
+swa_eng = {v: k for k, v in eng_swa.items()}
 
 
 def translate(text, target):
     text = text.lower().strip()
 
     if target == "sw":
-        return EN_TO_SW.get(text, text)
+        return eng_swa.get(text, text)
 
     if target == "en":
-        return SW_TO_EN.get(text, text)
+        return swa_eng.get(text, text)
 
     return text
